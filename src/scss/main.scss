@@ -72,8 +72,8 @@ body {
   margin: auto;
 
   width: 98%;
-  height: 2.5rem;
-  line-height: 2.5rem;
+  height: 3rem;
+  line-height: 3rem;
 
   border: 1px solid #000;
 
@@ -82,19 +82,20 @@ body {
 
   vertical-align: center;
 
-  font-family: 'Digital', monospace;
-  font-size: 2rem;
   overflow: hidden;
 }
 
 #display-inner {
   overflow: hidden;
-  margin: 0 0.6rem;
+  margin: 0 1rem;
 }
 
 #display {
   float: right;
   text-align: right;
+
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 2.4rem;
 }
 
 #keypad {
