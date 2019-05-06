@@ -1,6 +1,9 @@
 /*
  * Variables
  */
+/*
+ *  Global
+ */
 * {
   margin: 0;
   padding: 0;
@@ -8,14 +11,17 @@
   overflow: none; }
 
 body {
-  background: darkslategrey;
-  background: #2e4f4f; }
+  background: #404252; }
 
+/*
+ *  Calculator
+ */
 #calculator-app {
   margin: 5rem auto;
-  padding: 0.2rem;
+  padding: 0.3rem;
   width: 320px;
-  border: 2px groove black; }
+  border: 2px solid #242424;
+  background: #303033; }
 
 #display {
   margin: auto;
@@ -24,13 +30,15 @@ body {
   height: 2.5rem;
   line-height: 2.5rem;
   border: 1px solid #000;
+  background: #414149;
+  color: #242424;
   text-align: right;
   vertical-align: center;
   font-family: 'Digital', monospace;
   font-size: 2rem; }
 
 #keypad {
-  padding: 0.2rem;
+  padding: 0.4rem 0.2rem;
   display: grid;
   grid-gap: 0.1rem;
   grid-template-rows: 4;
@@ -43,19 +51,22 @@ body {
   color: #ddd;
   font-family: 'Lato', monospace;
   font-size: 2rem;
-  border: 2px #333 solid; }
+  border: 2px #334037 solid; }
+  .keypad-btn:hover {
+    transition: all 0.1s ease-in-out;
+    color: black; }
 
 .number-btn {
-  background: #444; }
+  background: #3f6d4d; }
 
 .operation-btn {
-  background: #666; }
+  background: #3c5644; }
 
 #equals {
-  background: #f00; }
+  background: #3c5644; }
 
 #clear {
-  background: #00f; }
+  background: #ba3a25; }
 
 /*
  *  Keypad buttons

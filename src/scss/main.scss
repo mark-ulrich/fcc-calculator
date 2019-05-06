@@ -1,14 +1,47 @@
 /*
  * Variables
  */
-$keypad-btn-color: #ddd;
-$keypad-btn-border-color: #333;
-$keypad-btn-border-width: 2px;
-$number-btn-bgcolor: #444;
-$operation-btn-bgcolor: #666;
-$equals-btn-bgcolor: #f00;
-$clear-btn-bgcolor: #00f;
+$color-primary-0: #3c5644; // Main Primary color */
+$color-primary-1: #334037;
+$color-primary-2: #384b3e;
+$color-primary-3: #3e6249;
+$color-primary-4: #3f6d4d;
 
+$color-secondary-1-0: #ffff21; // Main Secondary color (1) */
+$color-secondary-1-1: #ffff13;
+$color-secondary-1-2: #ffff1a;
+$color-secondary-1-3: #ffff28;
+$color-secondary-1-4: #fcfc2f;
+
+$color-secondary-2-0: #303033; // Main Secondary color (2) */
+$color-secondary-2-1: #515155;
+$color-secondary-2-2: #3f3f42;
+$color-secondary-2-3: #414149;
+$color-secondary-2-4: #404252;
+
+$color-complement-0: #b11f09; // Main Complement color */
+$color-complement-1: #bf6253;
+$color-complement-2: #ba3a25;
+$color-complement-3: #a41600;
+$color-complement-4: #931400;
+
+$color-white: #ddd;
+$color-black: #242424;
+
+$calc-bgcolor: $color-secondary-2-0;
+$display-bgcolor: $color-secondary-2-3;
+$display-color: $color-black;
+$keypad-btn-color: $color-white;
+$keypad-btn-border-color: $color-primary-1;
+$keypad-btn-border-width: 2px;
+$number-btn-bgcolor: $color-primary-4;
+$operation-btn-bgcolor: $color-primary-0;
+$equals-btn-bgcolor: $color-primary-0;
+$clear-btn-bgcolor: $color-complement-2;
+
+/*
+ *  Global
+ */
 * {
   margin: 0;
   padding: 0;
@@ -17,17 +50,22 @@ $clear-btn-bgcolor: #00f;
 }
 
 body {
-  background: darkslategrey;
-  background: #2e4f4f;
+  // background: darkslategrey;
+  background: $color-secondary-2-4;
 }
 
+/*
+ *  Calculator
+ */
 #calculator-app {
   margin: 5rem auto;
-  padding: 0.2rem;
+  padding: 0.3rem;
 
   width: 320px;
 
-  border: 2px groove black;
+  border: 2px solid $color-black;
+
+  background: $calc-bgcolor;
 }
 
 #display {
@@ -40,6 +78,9 @@ body {
 
   border: 1px solid #000;
 
+  background: $display-bgcolor;
+  color: $display-color;
+
   text-align: right;
   vertical-align: center;
 
@@ -48,7 +89,7 @@ body {
 }
 
 #keypad {
-  padding: 0.2rem;
+  padding: 0.4rem 0.2rem;
 
   display: grid;
   grid-gap: 0.1rem;
@@ -72,6 +113,11 @@ body {
   font-size: 2rem;
 
   border: $keypad-btn-border-width $keypad-btn-border-color solid;
+
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    color: black;
+  }
 }
 
 .number-btn {
