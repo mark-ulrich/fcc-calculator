@@ -41,7 +41,8 @@ body {
   min-height: 70px;
   min-width: 70px;
   color: #ddd;
-  font-family: 'Digital', monospace;
+  font-family: 'Lato', monospace;
+  font-size: 2rem;
   border: 2px #333 solid; }
 
 .number-btn {

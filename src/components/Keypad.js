@@ -101,14 +101,14 @@ export class Keypad extends Component {
           id='multiply'
           onClick={this.props.onButtonPress}
         >
-          *
+          &times;
         </button>
         <button
           className='keypad-btn operation-btn'
           id='divide'
           onClick={this.props.onButtonPress}
         >
-          /
+          &divide;
         </button>
         <button
           className='keypad-btn number-btn'
