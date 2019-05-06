@@ -1,3 +1,14 @@
+/*
+ * Variables
+ */
+$keypad-btn-color: #ddd;
+$keypad-btn-border-color: #333;
+$keypad-btn-border-width: 2px;
+$number-btn-bgcolor: #444;
+$operation-btn-bgcolor: #666;
+$equals-btn-bgcolor: #f00;
+$clear-btn-bgcolor: #00f;
+
 * {
   margin: 0;
   padding: 0;
@@ -5,13 +16,18 @@
   overflow: none;
 }
 
+body {
+  background: darkslategrey;
+  background: #2e4f4f;
+}
+
 #calculator-app {
   margin: 5rem auto;
   padding: 0.2rem;
 
-  width: 300px;
+  width: 320px;
 
-  border: 1px solid black;
+  border: 2px groove black;
 }
 
 #display {
@@ -27,11 +43,15 @@
   text-align: right;
   vertical-align: center;
 
-  font-size: 1.5rem;
+  font-family: 'Digital', monospace;
+  font-size: 2rem;
 }
 
 #keypad {
+  padding: 0.2rem;
+
   display: grid;
+  grid-gap: 0.1rem;
   grid-template-rows: 4;
   grid-template-columns: 5;
   grid-template-areas:
@@ -43,6 +63,30 @@
 }
 
 .keypad-btn {
+  min-height: 70px;
+  min-width: 70px;
+
+  color: $keypad-btn-color;
+
+  font-family: 'Digital', monospace;
+
+  border: $keypad-btn-border-width $keypad-btn-border-color solid;
+}
+
+.number-btn {
+  background: $number-btn-bgcolor;
+}
+
+.operation-btn {
+  background: $operation-btn-bgcolor;
+}
+
+#equals {
+  background: $equals-btn-bgcolor;
+}
+
+#clear {
+  background: $clear-btn-bgcolor;
 }
 
 /*

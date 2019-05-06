@@ -7,6 +7,8 @@ const SUBTRACT = 'subtract';
 const MULTIPLY = 'multiply';
 const DIVIDE = 'divide';
 
+const MAX_DISPLAY_CHARS = 14;
+
 export class CalculatorApp extends Component {
   constructor(props) {
     super(props);
@@ -62,6 +64,28 @@ export class CalculatorApp extends Component {
    */
   setOperation = operation => {
     this.setState({ currentOperation: operation, isNewOp: true });
+  };
+
+  /**
+   * Round display value in order to fit comfortably on display
+   */
+  roundDisplay = val => {
+    let str = val.toString();
+    if (!str.includes('.')) return val;
+
+    console.log(str);
+    const [integer, fractional] = str.split('.');
+    console.log(integer, fractional);
+    const decimalPlaces = Math.min(
+      str.length - integer.length - 1,
+      MAX_DISPLAY_CHARS - integer.length - 1
+    );
+    console.log(decimalPlaces);
+
+    return (
+      Math.round(parseFloat(str) * Math.pow(10, decimalPlaces)) /
+      Math.pow(10, decimalPlaces)
+    );
   };
 
   /**
@@ -137,6 +161,8 @@ export class CalculatorApp extends Component {
       default:
         break;
     }
+
+    newValue = this.roundDisplay(newValue);
 
     this.setState({
       savedValue: newValue,
