@@ -6,6 +6,7 @@ const ADD = 'add';
 const SUBTRACT = 'subtract';
 const MULTIPLY = 'multiply';
 const DIVIDE = 'divide';
+const DEFAULT_OPERATION = ADD;
 
 const MAX_DISPLAY_CHARS = 14;
 
@@ -13,23 +14,41 @@ export class CalculatorApp extends Component {
   constructor(props) {
     super(props);
 
+    /* NOTE: savedValue is a number; displayText is string */
     this.state = {
       savedValue: 0,
-      currentDisplay: '0',
-      currentOperation: null,
+      displayText: '0',
+      currentOperation: DEFAULT_OPERATION,
       isNewOp: true
     };
   }
+
+  setSavedValue = newValue => {
+    this.setState({ savedValue: newValue });
+  };
+
+  /**
+   * Update the display string in global state
+   */
+  setDisplayText = displayText => {
+    displayText = this.roundDisplay(displayText);
+    this.setState({ displayText });
+  };
+
+  /**
+   * Update the current operation in global state
+   */
+  setOperation = operation => {
+    this.setState({ currentOperation: operation, isNewOp: true });
+  };
 
   /**
    * Reset to default state
    */
   reset = () => {
-    this.setOperation(ADD);
-    this.updateDisplay('0');
-    this.setState({
-      savedValue: 0
-    });
+    this.setOperation(DEFAULT_OPERATION);
+    this.setDisplayText('0');
+    this.setSavedValue(0);
   };
 
   /**
@@ -50,20 +69,6 @@ export class CalculatorApp extends Component {
     } else if (id === 'equals') {
       this.equalsPressed();
     }
-  };
-
-  /**
-   * Update the display string in global state
-   */
-  updateDisplay = num => {
-    this.setState({ currentDisplay: num.toString() });
-  };
-
-  /**
-   * Update the current operation in global state
-   */
-  setOperation = operation => {
-    this.setState({ currentOperation: operation, isNewOp: true });
   };
 
   /**
@@ -93,26 +98,28 @@ export class CalculatorApp extends Component {
    * decimal '.'
    */
   numberPressed = num => {
-    let currentDisplay = this.state.currentDisplay;
+    let displayText = this.state.displayText;
 
     // We're entering a new operation
     if (this.state.isNewOp) {
-      currentDisplay = '';
+      displayText = '';
       this.setState({ isNewOp: false });
     }
 
     // Ignore decimal if display already has a decimal
-    if (num === '.' && currentDisplay.includes('.')) return;
+    if (num === '.' && displayText.includes('.')) return;
 
     // If num is 0, ignore if display is already 0, otherwise clear display
-    if (currentDisplay === '0') {
+    if (displayText === '0') {
       if (num === '0') return;
-      else currentDisplay = '';
+      else displayText = '';
     }
 
-    this.setState({
-      currentDisplay: `${currentDisplay}${num}`
-    });
+    this.setDisplayText(displayText + num);
+
+    // this.setState({
+    //   displayText: `${displayText}${num}`
+    // });
   };
 
   /**
@@ -128,7 +135,7 @@ export class CalculatorApp extends Component {
    */
   equalsPressed = () => {
     this.performOperation(this.state.currentOperation);
-    this.setOperation(null);
+    this.setOperation(DEFAULT_OPERATION);
   };
 
   /**
@@ -139,7 +146,7 @@ export class CalculatorApp extends Component {
     if (this.state.isNewOp) return;
 
     let newValue = this.state.savedValue;
-    let currentValue = parseFloat(this.state.currentDisplay);
+    let currentValue = parseFloat(this.state.displayText);
 
     switch (operation) {
       case ADD:
@@ -155,25 +162,26 @@ export class CalculatorApp extends Component {
         if (currentValue === 0) console.error('DIVIDE BY ZERO');
         newValue /= currentValue;
         break;
-      case null:
-        newValue = currentValue;
-        break;
+      // case null:
+      // newValue = currentValue;
+      // break;
       default:
+        alert('UNKNOWN OPERATION');
         break;
     }
 
-    newValue = this.roundDisplay(newValue);
+    // newValue = this.roundDisplay(newValue);
 
     this.setState({
       savedValue: newValue,
-      currentDisplay: newValue.toString()
+      displayText: newValue.toString()
     });
   };
 
   render() {
     return (
       <div id='calculator-app'>
-        <Display displayValue={this.state.currentDisplay} />
+        <Display displayValue={this.state.displayText} />
         <Keypad onButtonPress={this.onButtonPress} />
       </div>
     );
