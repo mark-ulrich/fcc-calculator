@@ -19,35 +19,6 @@ export class CalculatorApp extends Component {
     };
   }
 
-  // componentWillUpdate() {
-  //   console.log(
-  //     'TCL: CalculatorApp -> componentWillUpdate -> savedValue',
-  //     this.state.savedValue
-  //   );
-  // }
-
-  // componentDidMount() {
-  //   console.log(
-  //     'TCL: CalculatorApp -> componentDidMount -> savedValue',
-  //     this.state.savedValue
-  //   );
-  //   console.log(
-  //     'TCL: CalculatorApp -> componentDidMount -> currentDisplay',
-  //     this.state.currentDisplay
-  //   );
-  // }
-
-  // componentDidUpdate() {
-  //   console.log(
-  //     'TCL: CalculatorApp -> componentDidUpdate -> savedValue',
-  //     this.state.savedValue
-  //   );
-  //   console.log(
-  //     'TCL: CalculatorApp -> componentDidUpdate -> currentDisplay',
-  //     this.state.currentDisplay
-  //   );
-  // }
-
   /**
    * Reset to default state
    */
@@ -61,7 +32,8 @@ export class CalculatorApp extends Component {
 
   /**
    * Delegate a button press event to the appropriate method depending
-   * on the type of the button which was pressed.
+   * on the type of the button which was pressed. The button types are:
+   *  number-btn, operation-btn, clear, and equals
    */
   onButtonPress = e => {
     const classList = e.target.classList;
@@ -85,6 +57,9 @@ export class CalculatorApp extends Component {
     this.setState({ currentDisplay: num.toString() });
   };
 
+  /**
+   * Update the current operation in global state
+   */
   setOperation = operation => {
     this.setState({ currentOperation: operation, isNewOp: true });
   };
@@ -116,25 +91,31 @@ export class CalculatorApp extends Component {
     });
   };
 
+  /**
+   * Handle press event for operation button
+   */
   operationPressed = operation => {
     this.performOperation(this.state.currentOperation);
     this.setOperation(operation);
   };
 
+  /**
+   * Handle press event for equals button
+   */
   equalsPressed = () => {
     this.performOperation(this.state.currentOperation);
     this.setOperation(null);
   };
 
+  /**
+   * Perform the current operation
+   */
   performOperation = operation => {
+    // If we haven't entered a number for a new operation yet, ignore
     if (this.state.isNewOp) return;
 
     let newValue = this.state.savedValue;
     let currentValue = parseFloat(this.state.currentDisplay);
-
-    console.log('Performing operation: ', this.state.currentOperation);
-    console.log('TCL: CalculatorApp -> newValue', newValue);
-    console.log('TCL: CalculatorApp -> currentValue', currentValue);
 
     switch (operation) {
       case ADD:
@@ -151,14 +132,11 @@ export class CalculatorApp extends Component {
         newValue /= currentValue;
         break;
       case null:
-        console.log('in null');
         newValue = currentValue;
         break;
       default:
         break;
     }
-
-    console.log('TCL: CalculatorApp -> newValue', newValue);
 
     this.setState({
       savedValue: newValue,
