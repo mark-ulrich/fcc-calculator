@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 export class Display extends Component {
   render() {
-    return <div id='display'>{this.props.displayValue}</div>;
+    return (
+      <div id='display-outer'>
+        <div id='display-inner'>
+          <div id='display'>{this.props.displayValue}</div>
+        </div>
+      </div>
+    );
   }
 }
 

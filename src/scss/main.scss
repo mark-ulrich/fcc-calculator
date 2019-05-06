@@ -68,9 +68,8 @@ body {
   background: $calc-bgcolor;
 }
 
-#display {
+#display-outer {
   margin: auto;
-  padding-right: 0.7rem;
 
   width: 98%;
   height: 2.5rem;
@@ -81,11 +80,21 @@ body {
   background: $display-bgcolor;
   color: $display-color;
 
-  text-align: right;
   vertical-align: center;
 
   font-family: 'Digital', monospace;
   font-size: 2rem;
+  overflow: hidden;
+}
+
+#display-inner {
+  overflow: hidden;
+  margin: 0 0.6rem;
+}
+
+#display {
+  float: right;
+  text-align: right;
 }
 
 #keypad {

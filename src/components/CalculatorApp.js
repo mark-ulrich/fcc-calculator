@@ -75,22 +75,26 @@ export class CalculatorApp extends Component {
    * Round display value in order to fit comfortably on display
    */
   roundDisplay = val => {
-    let str = val.toString();
-    if (!str.includes('.')) return val;
+    if (typeof val !== 'string') {
+      alert('FAIL');
+      return;
+    }
 
-    console.log(str);
-    const [integer, fractional] = str.split('.');
+    // if (!val.includes('.')) return val;
+
+    const [integer, fractional] = val.split('.');
     console.log(integer, fractional);
     const decimalPlaces = Math.min(
-      str.length - integer.length - 1,
+      val.length - integer.length - 1,
       MAX_DISPLAY_CHARS - integer.length - 1
     );
     console.log(decimalPlaces);
 
-    return (
-      Math.round(parseFloat(str) * Math.pow(10, decimalPlaces)) /
-      Math.pow(10, decimalPlaces)
-    );
+    // return (
+    //   Math.round(parseFloat(val) * Math.pow(10, decimalPlaces)) /
+    //   Math.pow(10, decimalPlaces)
+    // ).toString();
+    return val;
   };
 
   /**
@@ -115,11 +119,8 @@ export class CalculatorApp extends Component {
       else displayText = '';
     }
 
-    this.setDisplayText(displayText + num);
-
-    // this.setState({
-    //   displayText: `${displayText}${num}`
-    // });
+    // if (num === '.') this.setDisplayText(`${num}${displayText}`);
+    this.setDisplayText(`${displayText}${num}`);
   };
 
   /**
@@ -162,9 +163,6 @@ export class CalculatorApp extends Component {
         if (currentValue === 0) console.error('DIVIDE BY ZERO');
         newValue /= currentValue;
         break;
-      // case null:
-      // newValue = currentValue;
-      // break;
       default:
         alert('UNKNOWN OPERATION');
         break;
