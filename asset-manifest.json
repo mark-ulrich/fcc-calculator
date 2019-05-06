@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/fcc-calculator/static/css/main.b5f05879.chunk.css",
+    "main.css": "/fcc-calculator/static/css/main.0605d15d.chunk.css",
     "main.js": "/fcc-calculator/static/js/main.af865422.chunk.js",
     "main.js.map": "/fcc-calculator/static/js/main.af865422.chunk.js.map",
     "runtime~main.js": "/fcc-calculator/static/js/runtime~main.e9687150.js",
@@ -8,8 +8,8 @@
     "static/js/2.56cb80cd.chunk.js": "/fcc-calculator/static/js/2.56cb80cd.chunk.js",
     "static/js/2.56cb80cd.chunk.js.map": "/fcc-calculator/static/js/2.56cb80cd.chunk.js.map",
     "index.html": "/fcc-calculator/index.html",
-    "precache-manifest.4a6803b17e9b66b038a92d36ee93f5f5.js": "/fcc-calculator/precache-manifest.4a6803b17e9b66b038a92d36ee93f5f5.js",
+    "precache-manifest.cbee31824ff61f38efab63e12265624d.js": "/fcc-calculator/precache-manifest.cbee31824ff61f38efab63e12265624d.js",
     "service-worker.js": "/fcc-calculator/service-worker.js",
-    "static/css/main.b5f05879.chunk.css.map": "/fcc-calculator/static/css/main.b5f05879.chunk.css.map"
+    "static/css/main.0605d15d.chunk.css.map": "/fcc-calculator/static/css/main.0605d15d.chunk.css.map"
   }
 }
